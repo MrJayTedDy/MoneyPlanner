@@ -36,7 +36,7 @@ To build and run this project, you need:
 Open your terminal and run the following command to download the project:
 
 ```bash
-git clone [https://github.com/yourusername/MoneyPlanner.git](https://github.com/yourusername/MoneyPlanner.git)
+git clone <copy the link from the Code above>
 cd MoneyPlanner
 ```
 
