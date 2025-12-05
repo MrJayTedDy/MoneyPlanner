@@ -224,7 +224,13 @@ struct ContentView: View {
     }
     
     var totalExpensesUAH: Double {
+        // Reverted to activeExpenses so the Budget summary is always TOTAL
         activeExpenses.reduce(0) { $0 + toUAH(amount: $1.amount, isUSD: $1.isUSD) }
+    }
+    
+    // NEW: Expenses total for the filtered list (dynamic)
+    var filteredExpensesTotalUAH: Double {
+        processedExpenses.reduce(0) { $0 + toUAH(amount: $1.amount, isUSD: $1.isUSD) }
     }
     
     var totalSavings: Double {
@@ -570,7 +576,8 @@ struct ContentView: View {
                 Image(systemName: "cart.fill").foregroundStyle(.orange)
                 Text(L10n.get("Expenses List")).font(.headline)
                 Spacer()
-                Text("\(totalExpensesUAH, specifier: "%.0f")").font(.system(.body, design: .monospaced))
+                // Use filtered expenses total here to reflect status/filters
+                Text("\(filteredExpensesTotalUAH, specifier: "%.0f")").font(.system(.body, design: .monospaced))
             }
             
             // Filter and sort panel
